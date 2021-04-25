@@ -50,7 +50,7 @@ func UpdateProduct(c *fiber.Ctx) error {
 
 	db.Model(product).Where("id = ?", id).Updates(product)
 
-	return c.SendString("Update Product Successfully")
+	return c.Status(200).SendString("Update Product Successfully")
 
 }
 
@@ -64,5 +64,6 @@ func DeleteProduct(c *fiber.Ctx) error {
 		return c.Status(500).SendString("No Product Found with ID")
 	}
 	db.Delete(&product)
-	return c.SendString("Delete Product Successfully")
+	return c.Status(200).SendString("Delete Product Successfully")
+
 }
