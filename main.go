@@ -13,10 +13,8 @@ import (
 
 func main() {
 	app := fiber.New()
-	// Default config
-	app.Use(cors.New())
 
-	// Or extend your config for customization
+	//config for customization
 	app.Use(cors.New(configs.ConfigDefault))
 
 	configs.InitDatabase()
