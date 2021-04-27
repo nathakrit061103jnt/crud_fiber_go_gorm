@@ -14,6 +14,8 @@
 
 - http://127.0.0.1:8080/api/product/14
 
+![](./images/getDataById.png)
+
 ### Create Data
 
 - http://127.0.0.1:8080/api/product
@@ -29,6 +31,8 @@
         "p_expiration_date": "2027-04-21T20:30:34+07:00"
     }
 ```
+
+![](./images/createData.png)
 
 ### Update Data
 
@@ -46,6 +50,10 @@
     }
 ```
 
+![](./images/updateData.png)
+
 ### Delete Data
 
 - http://127.0.0.1:8080/api/product/14
+
+![](./images/deleteData.png)
