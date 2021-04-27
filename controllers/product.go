@@ -59,11 +59,19 @@ func DeleteProduct(c *fiber.Ctx) error {
 	db := database.DBConn
 
 	var product models.Product
+
 	db.First(&product, id)
-	if err := c.BodyParser(product); err != nil {
+	if product.P_Name == "" {
 		return c.Status(500).SendString("No Product Found with ID")
+
 	}
-	db.Delete(&product)
-	return c.Status(200).SendString("Delete Product Successfully")
+
+	// Soft  permanently
+	db.Delete(&product, id)
+
+	// Delete permanently
+	// db.Unscoped().Delete(&product, id)
+
+	return c.SendString("Product Successfully deleted")
 
 }
