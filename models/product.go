@@ -3,9 +3,7 @@ package models
 import (
 	"time"
 
-	_ "github.com/google/uuid"
 	"gorm.io/gorm"
-	_ "gorm.io/gorm"
 )
 
 type Product struct {
