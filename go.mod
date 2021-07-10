@@ -7,6 +7,7 @@ require (
 	github.com/form3tech-oss/jwt-go v3.2.3+incompatible
 	github.com/gofiber/fiber/v2 v2.8.0
 	github.com/gofiber/jwt/v2 v2.2.1
+	github.com/golang-jwt/jwt v3.2.1+incompatible // indirect
 	github.com/google/uuid v1.2.0
 	github.com/gorilla/sessions v1.2.1 // indirect
 	github.com/joho/godotenv v1.3.0 // indirect

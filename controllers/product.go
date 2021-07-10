@@ -9,7 +9,7 @@ import (
 
 func GetProductsAll(c *fiber.Ctx) error {
 	db := database.DBConn
-	var product []models.Product
+	product := []models.Product{}
 	if err := db.Find(&product).Error; err != nil {
 		// error handling...
 		return err
@@ -20,22 +20,28 @@ func GetProductsAll(c *fiber.Ctx) error {
 func GetProduct(c *fiber.Ctx) error {
 	id := c.Params("id")
 	db := database.DBConn
-	var product []models.Product
+
+	product := []models.Product{}
 	if err := db.Find(&product, id).Error; err != nil {
 		// error handling...
 		return err
 	}
 
+	if len(product) == 0 {
+		return c.Status(400).SendString("ไม่พบข้อมูล")
+	}
+
 	return c.JSON(product)
+
 }
 
 func CreateProduct(c *fiber.Ctx) error {
 
 	db := database.DBConn
 
-	product := new(models.Product)
+	product := models.Product{}
 
-	if err := c.BodyParser(product); err != nil {
+	if err := c.BodyParser(&product); err != nil {
 		return err
 	}
 
@@ -54,13 +60,13 @@ func UpdateProduct(c *fiber.Ctx) error {
 
 	id := c.Params("id")
 	db := database.DBConn
-	product := new(models.Product)
+	product := models.Product{}
 
-	if err := c.BodyParser(product); err != nil {
+	if err := c.BodyParser(&product); err != nil {
 		return c.Status(500).SendString("No Product Found with ID")
 	}
 
-	if err := db.Model(product).Where("id = ?", id).Updates(product).Error; err != nil {
+	if err := db.Model(&product).Where("id = ?", id).Updates(&product).Error; err != nil {
 		// error handling...
 		return err
 	}
@@ -73,7 +79,7 @@ func DeleteProduct(c *fiber.Ctx) error {
 	id := c.Params("id")
 	db := database.DBConn
 
-	var product models.Product
+	product := models.Product{}
 
 	if err := db.First(&product, id).Error; err != nil {
 		// error handling...

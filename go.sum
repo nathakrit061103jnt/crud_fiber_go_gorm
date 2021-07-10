@@ -23,6 +23,8 @@ github.com/gofiber/fiber/v2 v2.8.0/go.mod h1:Ah3IJikrKNRepl/HuVawppS25X7FWohwfCS
 github.com/gofiber/jwt/v2 v2.2.1 h1:nphRrLNB3t0b7Y2IgHOwv5HXggO1/GBsDSBysCTatHo=
 github.com/gofiber/jwt/v2 v2.2.1/go.mod h1:PC746ApJVpoQH3I98kmnLGjUM08b8qYVMlaTiNlV0Ao=
 github.com/gofrs/uuid v3.2.0+incompatible/go.mod h1:b2aQJv3Z4Fp6yNu3cdSllBxTCLRxnplIgP/c0N/04lM=
+github.com/golang-jwt/jwt v3.2.1+incompatible h1:73Z+4BJcrTC+KczS6WvTPvRGOp1WmfEP4Q1lOd9Z/+c=
+github.com/golang-jwt/jwt v3.2.1+incompatible/go.mod h1:8pz2t5EyA70fFQQSrl6XZXzqecmYZeUEB8OUGHkxJ+I=
 github.com/google/renameio v0.1.0/go.mod h1:KWCgfxg9yswjAJkECMjeO8J8rahYeXnNhOm40UhjYkI=
 github.com/google/uuid v1.2.0 h1:qJYtXnJRWmpe7m/3XlyhrsLrEURqHRM2kxzoxXqyUDs=
 github.com/google/uuid v1.2.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
