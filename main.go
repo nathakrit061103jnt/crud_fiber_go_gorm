@@ -16,7 +16,6 @@ func main() {
 
 	//config for customization
 	app.Use(cors.New(configs.ConfigDefault))
-
 	configs.InitDatabase()
 	routes.SetupRoutes(app)
 	log.Fatal(app.Listen(":8080"))

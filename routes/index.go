@@ -10,15 +10,16 @@ import (
 
 func SetupRoutes(app *fiber.App) {
 
-	api := app.Group("/api", jwtware.New(configs.ConfigAuth)) //  api
-	auth := app.Group("/auth")                                // auth
+	// api := app.Group("/api", jwtware.New(configs.ConfigAuth)) //  api
+	auth := app.Group("/api/v1/auth")
+	products := app.Group("/api/v1/products", jwtware.New(configs.ConfigAuth)) // auth
 
 	// Product route
-	api.Get("/products", controllers.GetProductsAll)
-	api.Get("/product/:id", controllers.GetProduct)
-	api.Post("/product", controllers.CreateProduct)
-	api.Put("/product/:id", controllers.UpdateProduct)
-	api.Delete("/product/:id", controllers.DeleteProduct)
+	products.Get("/", controllers.GetProductsAll)
+	products.Get("/:id", controllers.GetProduct)
+	products.Post("/", controllers.CreateProduct)
+	products.Put("/:id", controllers.UpdateProduct)
+	products.Delete("/:id", controllers.DeleteProduct)
 
 	// auth route
 	auth.Post("/login", controllers.Login)

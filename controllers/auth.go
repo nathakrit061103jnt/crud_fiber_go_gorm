@@ -54,7 +54,7 @@ func Login(c *fiber.Ctx) error {
 
 	// Set claims
 	claims := token.Claims.(jwt.MapClaims)
-	claims["name"] = user.U_full_name
+	claims["email"] = user.U_email
 	claims["admin"] = false
 	claims["exp"] = time.Now().Add(time.Hour * 72).Unix()
 

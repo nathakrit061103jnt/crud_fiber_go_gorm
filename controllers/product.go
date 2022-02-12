@@ -12,9 +12,9 @@ func GetProductsAll(c *fiber.Ctx) error {
 	product := []models.Product{}
 	if err := db.Find(&product).Error; err != nil {
 		// error handling...
-		return err
+		return c.Status(400).JSON(err.Error())
 	}
-	return c.JSON(product)
+	return c.Status(200).JSON(product)
 }
 
 func GetProduct(c *fiber.Ctx) error {
@@ -24,14 +24,14 @@ func GetProduct(c *fiber.Ctx) error {
 	product := []models.Product{}
 	if err := db.Find(&product, id).Error; err != nil {
 		// error handling...
-		return err
+		return c.Status(400).JSON(err.Error())
 	}
 
 	if len(product) == 0 {
 		return c.Status(400).SendString("ไม่พบข้อมูล")
 	}
 
-	return c.JSON(product)
+	return c.Status(200).JSON(product)
 
 }
 
@@ -42,17 +42,17 @@ func CreateProduct(c *fiber.Ctx) error {
 	product := models.Product{}
 
 	if err := c.BodyParser(&product); err != nil {
-		return err
+		return c.Status(404).JSON(err.Error())
 	}
 
 	if err := db.Create(&product).Error; err != nil {
 		// error handling...
-		return err
+		return c.Status(400).JSON(err.Error())
 	}
 
 	// db.Create(&product)
 
-	return c.JSON(product)
+	return c.Status(201).JSON(product)
 
 }
 
@@ -68,10 +68,10 @@ func UpdateProduct(c *fiber.Ctx) error {
 
 	if err := db.Model(&product).Where("id = ?", id).Updates(&product).Error; err != nil {
 		// error handling...
-		return err
+		return c.Status(400).JSON(err.Error())
 	}
 
-	return c.Status(200).SendString("Update Product Successfully")
+	return c.Status(200).JSON(&product)
 
 }
 
@@ -92,12 +92,12 @@ func DeleteProduct(c *fiber.Ctx) error {
 		// Soft  permanently
 		if err := db.Delete(&product, id).Error; err != nil {
 			// error handling...
-			return err
+			return c.Status(400).JSON(err.Error())
 		}
 		// Delete permanently
 		// db.Unscoped().Delete(&product, id)
 	}
 
-	return c.SendString("Product Successfully deleted")
+	return c.Status(200).SendString("Product Successfully deleted")
 
 }
